@@ -1,10 +1,10 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.page-container{
+.page-container {
     border: solid 1px green;
 
     display: flex;
@@ -13,33 +13,63 @@
     align-items: center;
     justify-content: center;
 
-    width: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
 }
 
 .fruit-container {
-  /*border: solid 1px red;*/
-  display: flex;
+    border: dotted 1px gray;
+    display: flex;
 
-  width: 300px;
-  flex-direction: row;
-  justify-content: space-between;
+    width: 300px;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin: 20px 0;
+    padding: 40px;
+}
+
+.span {
+    flex-basis: auto;
 }
 
 .logo-image {
-  width: 100%;
-  margin: 0 20px;
+    width: 100%;
+}
+
+h1 {
+    padding: 0 0 30px 0;
 }
 
 .buttons-container {
-  /*border: solid 1px blue;*/
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100px;
+    /*border: solid 1px blue;*/
+    display: flex;
+    flex-direction: row;
+
+    align-items: baseline;
+    justify-content: space-around;
+    width: 100px;
 }
 
 .button {
     width: 30px;
     height: 30px;
+}
+
+.btn-reset-counters {
+    width: 300px;
+    padding: 12px 0;
+}
+form{
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+
+    margin: 20px auto;
+    padding: 15px;
+    border: solid 1px black;
 }
