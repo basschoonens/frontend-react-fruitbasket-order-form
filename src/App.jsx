@@ -9,20 +9,26 @@ function App() {
     const [appels, setAppels] = useState(0)
     const [kiwis, setKiwis] = useState(0)
 
-    const [formState, setFormState] = useState({
-        firstname: '',
-        lastname: '',
-        age: '',
-        postalCode: '',
-        deliveryFrequency: '',
-        comments: '',
-        terms: false
-    });
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [age, setAge] = useState(0);
+    const [zipcode, setZipcode] = useState('');
+    const [deliveryFrequency, toggleDeliveryFrequency] = useState('');
+    const [comment, setComment] = useState('');
+    const [agreeTerms, toggleAgreeTerms] = useState(false);
 
-    function handleChange(e) {
-        setFormState({
-            firstname: e.target.value
-        })
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log(`
+    Voornaam: ${firstname},
+    Achternaam: ${lastname},
+    Leeftijd: ${age},
+    Postcode: ${zipcode},
+    Bezorgfrequentie: ${deliveryFrequency},
+    Opmerkingen: ${comment},
+    Algemene voorwaarden: ${agreeTerms}
+    `);
+        console.log(`Fruitmand bestelling - aardbeiden: ${aardbeien}, bananen: ${bananen}, appels: ${appels}, kiwi's: ${kiwis}`);
     }
 
     const resetCounters = () => {
@@ -83,19 +89,37 @@ function App() {
                     </div>
                 </article>
                 <button className="btn-reset-counters" type="button" onClick={() => resetCounters()}>Reset</button>
-                <form className="order-form">
-                    <label htmlFor="firstname">Voornaam : <input type="text" name="firstname"/></label>
-                    <label htmlFor="lastname">Achternaam : <input type="text" name="lastname"/></label>
-                    <label htmlFor="age">Leeftijd : <input type="number"/></label>
-                    <label htmlFor="postal-code">Postcode : <input type="text"/></label>
-                    <label htmlFor="delivery-frequency">Bezorgfrequentie : </label>
-                    <select>
+                <form className="order-form" onSubmit={handleSubmit}>
+                    <label htmlFor="firstname">Voornaam :
+                        <input
+                            type="text"
+                            onChange={(e) => setFirstname(e.target.value)}
+                        />
+                    </label>
+                    <label htmlFor="lastname">Achternaam :
+                        <input type="text" onChange={(e) => setLastname(e.target.value)}
+                        />
+                    </label>
+                    <label htmlFor="age">Leeftijd :
+                        <input type="number" onChange={(e) => setAge(e.target.value)}
+                        />
+                    </label>
+                    <label htmlFor="postal-code">Postcode :
+                        <input type="text" onChange={(e) => setZipcode(e.target.value)}
+                        />
+                    </label>
+                    <label htmlFor="delivery-frequency">Bezorgfrequentie :</label>
+                    <select onChange={(e) => toggleDeliveryFrequency(e.target.value)}>
                         <option>iedere week</option>
                         <option>om de week</option>
                         <option>iedere maand</option>
                     </select>
-                    <label htmlFor="comments">Opmerkingen</label><textarea/>
-                    <label htmlFor="terms"><input type="checkbox"/> Ik ga akkoord met de voorwaarden</label>
+                    <label htmlFor="comments">Opmerkingen</label>
+                    <textarea rows={5} cols={30} onChange={(e) => setComment(e.target.value)}/>
+                    <label htmlFor="terms">
+                        <input type="checkbox" onChange={(e) => toggleAgreeTerms(e.target.value)}/>
+                        Ik ga akkoord met de voorwaarden
+                    </label>
                     <button className="btn-submit-form" type="submit">Verstuur</button>
                 </form>
             </main>

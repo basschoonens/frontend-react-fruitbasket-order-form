@@ -57,10 +57,18 @@ h1 {
     height: 30px;
 }
 
-.btn-reset-counters {
+.btn-reset-counters,
+.btn-submit-form {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 0;
+}
+
+btn-submit-form {
     width: 300px;
     padding: 12px 0;
 }
+
 form{
     display: flex;
     flex-direction: column;
@@ -73,3 +81,4 @@ form{
     padding: 15px;
     border: solid 1px black;
 }
+
