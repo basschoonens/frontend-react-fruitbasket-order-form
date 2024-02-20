@@ -1,6 +1,9 @@
 import './App.css';
 import {useState} from "react";
 import logo from './assets/screenshot-logo.png';
+import './components/Button.jsx';
+import './components/Counter.jsx';
+import Counter from "./components/Counter.jsx";
 
 
 function App() {
@@ -44,7 +47,7 @@ function App() {
                 <span><img className="logo-image" src={logo} alt="logo"/></span>
                 <h1>Fruitmand bezorgservice</h1>
                 <article className="fruit-container">
-                    <h2>Aardbeien </h2>
+                    <h2>🍓Aardbeien </h2>
                     <div className="buttons-container">
                         <button className="minusButton, button" disabled={aardbeien === 0}
                                 onClick={() => setAardbeien(previous => previous - 1)}>-
@@ -56,7 +59,14 @@ function App() {
                     </div>
                 </article>
                 <article className="fruit-container">
-                    <h2>Bananen </h2>
+                    <h2>🍓Aardbeien </h2>
+                    <Counter
+                        setFruitCount={setAardbeien}
+                        fruitCount={aardbeien}
+                    />
+                </article>
+                <article className="fruit-container">
+                    <h2>🍌 Bananen </h2>
                     <div className="buttons-container">
                         <button className="minusButton, button" disabled={bananen === 0}
                                 onClick={() => setBananen(previous => previous - 1)}>-
@@ -67,7 +77,7 @@ function App() {
                     </div>
                 </article>
                 <article className="fruit-container">
-                    <h2>Appels </h2>
+                    <h2>🍏 Appels </h2>
                     <div className="buttons-container">
                         <button className="minusButton, button" disabled={appels === 0}
                                 onClick={() => setAppels(previous => previous - 1)}>-
@@ -78,7 +88,7 @@ function App() {
                     </div>
                 </article>
                 <article className="fruit-container">
-                    <h2>Kiwis </h2>
+                    <h2>🥝 Kiwi's </h2>
                     <div className="buttons-container">
                         <button className="minusButton, button" disabled={kiwis === 0}
                                 onClick={() => setKiwis(previous => previous - 1)}>-
