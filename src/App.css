@@ -21,10 +21,11 @@
 .fruit-container {
     border: dotted 1px gray;
     display: flex;
+    flex-direction: row;
 
     max-height: 100px;
     width: 300px;
-    flex-direction: row;
+
     justify-content: space-between;
     align-items: baseline;
 
@@ -64,7 +65,6 @@ Button {
 .btn-submit-form {
     width: 100%;
     max-width: 300px;
-    padding: 12px 0;
 }
 
 btn-submit-form {

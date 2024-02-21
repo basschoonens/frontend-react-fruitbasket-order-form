@@ -12,26 +12,31 @@ function App() {
     const [appels, setAppels] = useState(0)
     const [kiwis, setKiwis] = useState(0)
 
-    const [firstname, setFirstname] = useState('');
-    const [lastname, setLastname] = useState('');
-    const [age, setAge] = useState(0);
-    const [zipcode, setZipcode] = useState('');
-    const [deliveryFrequency, toggleDeliveryFrequency] = useState('');
-    const [comment, setComment] = useState('');
-    const [agreeTerms, toggleAgreeTerms] = useState(false);
+
+    const [formState, setFormState] = useState({
+        firstname: '',
+        lastname: '',
+        age: 0,
+        zipcode: '',
+        deliveryFrequency: '',
+        comment: '',
+        agreeTerms: false
+    })
+
+    function handleChange(e) {
+        const inputName = e.target.name;
+        const inputValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
+        setFormState({
+            ...formState,
+            [inputName]: inputValue,
+        })
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(`
-    Voornaam: ${firstname},
-    Achternaam: ${lastname},
-    Leeftijd: ${age},
-    Postcode: ${zipcode},
-    Bezorgfrequentie: ${deliveryFrequency},
-    Opmerkingen: ${comment},
-    Algemene voorwaarden: ${agreeTerms}
-    `);
-        console.log(`Fruitmand bestelling - aardbeiden: ${aardbeien}, bananen: ${bananen}, appels: ${appels}, kiwi's: ${kiwis}`);
+        console.log(formState);
+        console.log(`Fruitmand bestelling - aardbeien: ${aardbeien}, bananen: ${bananen}, appels: ${appels}, kiwi's: ${kiwis}`);
     }
 
     const resetCounters = () => {
@@ -48,18 +53,6 @@ function App() {
                 <h1>Fruitmand bezorgservice</h1>
                 <article className="fruit-container">
                     <h2>🍓Aardbeien </h2>
-                    <div className="buttons-container">
-                        <button className="minusButton, button" disabled={aardbeien === 0}
-                                onClick={() => setAardbeien(previous => previous - 1)}>-
-                        </button>
-                        <p>{aardbeien}</p>
-                        <button className="plusButton, button"
-                                onClick={() => setAardbeien(previous => previous + 1)}>+
-                        </button>
-                    </div>
-                </article>
-                <article className="fruit-container">
-                    <h2>🍓Aardbeien </h2>
                     <Counter
                         setFruitCount={setAardbeien}
                         fruitCount={aardbeien}
@@ -67,67 +60,84 @@ function App() {
                 </article>
                 <article className="fruit-container">
                     <h2>🍌 Bananen </h2>
-                    <div className="buttons-container">
-                        <button className="minusButton, button" disabled={bananen === 0}
-                                onClick={() => setBananen(previous => previous - 1)}>-
-                        </button>
-                        <p>{bananen}</p>
-                        <button className="plusButton, button" onClick={() => setBananen(previous => previous + 1)}>+
-                        </button>
-                    </div>
+                    <Counter
+                        setFruitCount={setBananen}
+                        fruitCount={bananen}
+                    />
                 </article>
                 <article className="fruit-container">
                     <h2>🍏 Appels </h2>
-                    <div className="buttons-container">
-                        <button className="minusButton, button" disabled={appels === 0}
-                                onClick={() => setAppels(previous => previous - 1)}>-
-                        </button>
-                        <p>{appels}</p>
-                        <button className="plusButton, button" onClick={() => setAppels(previous => previous + 1)}>+
-                        </button>
-                    </div>
+                    <Counter
+                        setFruitCount={setAppels}
+                        fruitCount={appels}
+                    />
                 </article>
                 <article className="fruit-container">
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
                     <h2>🥝 Kiwi's </h2>
-                    <div className="buttons-container">
-                        <button className="minusButton, button" disabled={kiwis === 0}
-                                onClick={() => setKiwis(previous => previous - 1)}>-
-                        </button>
-                        <p>{kiwis}</p>
-                        <button className="plusButton, button" onClick={() => setKiwis(previous => previous + 1)}>+
-                        </button>
-                    </div>
+                    <Counter
+                        setFruitCount={setKiwis}
+                        fruitCount={kiwis}
+                    />
                 </article>
                 <button className="btn-reset-counters" type="button" onClick={() => resetCounters()}>Reset</button>
                 <form className="order-form" onSubmit={handleSubmit}>
                     <label htmlFor="firstname">Voornaam :
                         <input
+                            name="firstname"
                             type="text"
-                            onChange={(e) => setFirstname(e.target.value)}
+                            value={formState.firstname}
+                            onChange={handleChange}
                         />
                     </label>
                     <label htmlFor="lastname">Achternaam :
-                        <input type="text" onChange={(e) => setLastname(e.target.value)}
+                        <input
+                        name="lastname"
+                        type="text"
+                        value={formState.lastname}
+                        onChange={handleChange}
                         />
                     </label>
                     <label htmlFor="age">Leeftijd :
-                        <input type="number" onChange={(e) => setAge(e.target.value)}
+                        <input
+                            name="age"
+                            type="number"
+                            value={formState.age}
+                            onChange={handleChange}
                         />
                     </label>
                     <label htmlFor="postal-code">Postcode :
-                        <input type="text" onChange={(e) => setZipcode(e.target.value)}
+                        <input
+                            name="zipcode"
+                            type="text"
+                            value={formState.zipcode}
+                            onChange={handleChange}
                         />
                     </label>
                     <label htmlFor="delivery-frequency">Bezorgfrequentie :</label>
-                    <select onChange={(e) => toggleDeliveryFrequency(e.target.value)}>
-                        <option>iedere week</option>
-                        <option>om de week</option>
-                        <option>iedere maand</option>
+                    <select
+                        name="deliveryFrequency"
+                        value={formState.deliveryFrequency}
+                        onChange={handleChange}>
+                        <option value="week">iedere week</option>
+                        <option value="two-week">om de week</option>
+                        <option value="month">iedere maand</option>
                     </select>
                     <label htmlFor="comments">Opmerkingen</label>
-                    <textarea rows={5} cols={30} onChange={(e) => setComment(e.target.value)}/>
+                    <textarea
+                        name="comment"
+                        value={formState.comment}
+                        onChange={handleChange}
+                        rows={5}
+                        cols={30}
+                    />
                     <label htmlFor="terms">
-                        <input type="checkbox" onChange={(e) => toggleAgreeTerms(e.target.value)}/>
+                        <input
+                            name="agreeTerms"
+                            type="checkbox"
+                            value={formState.agreeTerms}
+                            onChange={handleChange}
+                        />
                         Ik ga akkoord met de voorwaarden
                     </label>
                     <button className="btn-submit-form" type="submit">Verstuur</button>
