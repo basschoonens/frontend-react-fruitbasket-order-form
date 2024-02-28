@@ -67,12 +67,8 @@ Button {
     max-width: 300px;
 }
 
-btn-submit-form {
-    width: 300px;
-    padding: 12px 0;
-}
-
 form{
+    border: solid 1px black;
     display: flex;
     flex-direction: column;
 
@@ -82,6 +78,10 @@ form{
 
     margin: 20px auto;
     padding: 15px;
-    border: solid 1px black;
 }
 
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+}

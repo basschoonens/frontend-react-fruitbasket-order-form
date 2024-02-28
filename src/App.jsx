@@ -92,10 +92,10 @@ function App() {
                     </label>
                     <label htmlFor="lastname">Achternaam :
                         <input
-                        name="lastname"
-                        type="text"
-                        value={formState.lastname}
-                        onChange={handleChange}
+                            name="lastname"
+                            type="text"
+                            value={formState.lastname}
+                            onChange={handleChange}
                         />
                     </label>
                     <label htmlFor="age">Leeftijd :
@@ -131,13 +131,13 @@ function App() {
                         rows={5}
                         cols={30}
                     />
+                    <input
+                        name="agreeTerms"
+                        type="checkbox"
+                        value={formState.agreeTerms}
+                        onChange={handleChange}
+                    />
                     <label htmlFor="terms">
-                        <input
-                            name="agreeTerms"
-                            type="checkbox"
-                            value={formState.agreeTerms}
-                            onChange={handleChange}
-                        />
                         Ik ga akkoord met de voorwaarden
                     </label>
                     <button className="btn-submit-form" type="submit">Verstuur</button>
